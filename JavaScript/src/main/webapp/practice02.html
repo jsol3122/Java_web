@@ -1,0 +1,65 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		function selectWeb(){
+			if(document.form.web.selectedIndex == 0)
+				window.open("https://www.google.com");
+			if(document.form.web.selectedIndex == 1)
+				window.open("https://www.naver.com");
+			if(document.form.web.selectedIndex == 2)
+				window.open("https://www.daum.net");
+		}
+	</script>
+</head>
+<body>
+	<form name="form">
+		<h2>옵션 선택으로 사이트 접속</h2>
+		<h3>옵션 선택마다 새 윈도우에 접속합니다</h3>
+		<hr>
+		<h3>접속할 사이트</h3>
+		<select name="web" onchange="selectWeb();">
+			<option value="google">구글</option>
+			<option value="naver">네이버</option>
+			<option value="daum">다음</option>
+		</select>
+	</form>
+</body>
+</html> -->
+
+<!--  선생님 답  -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		function selectWeb(select){
+			var index = select.selectedIndex;
+			var site = select.options[index].value;
+			alert(index +", "+ site);
+			// console.log(index +", "+ site); 로 alert대신 개발자도구에서 확인하는것도 가능
+			
+			// 창이 뜨는 위치값을 left, top, right, bottom 기준 간격설정 가능
+			window.open(site, "", "left=300, top=200, width=500, height=500");
+		}
+	</script>
+</head>
+<body>
+	<form name="form">
+		<h2>옵션 선택으로 사이트 접속</h2>
+		<h3>옵션 선택마다 새 윈도우에 접속합니다</h3>
+		<hr>
+		<h3>접속할 사이트</h3>
+		<select name="web" onchange="selectWeb(this);"> <!-- this로 선택된option을 갖고감 -->
+			<option value="">선택하세요</option>
+			<!-- onchange라서 변화가 필요하니까 첫 기본위치설정을 값없는 "선택하세요"같은거 하나 잡아주기 -->
+			<option value="http://www.google.com">구글</option>
+			<option value="http://www.naver.com">네이버</option>
+			<option value="http://daum.net">다음</option>
+		</select>
+	</form>
+</body>
+</html>

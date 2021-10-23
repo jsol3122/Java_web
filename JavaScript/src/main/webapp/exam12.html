@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		document.write("*** eval 내장함수 ***<br>");
+		var str = "100 + 1";
+		document.write(str + "<br>");
+		var result = eval(str); // "100 + 1" --> 100 + 1
+		document.write(result+"<br><br>");
+		
+		document.write("*** Number, parseInt 내장함수 ***<br>");
+		var value1 = "100";
+		var num1 = Number(value1); // 숫자(정수, 실수) 100
+		var num2 = parseInt(value1); // 정수 100
+		
+		var r1 = value1 + 1; // 글자 + 숫자 or 글자 + 글자 --> 결합
+		var r2 = num1 + 1; // 숫자 + 숫자 --> 덧셈
+		var r3 = num2 + 2;
+		
+		document.write("r1 = "+r1+"<br>");
+		document.write("r2 = "+r2+"<br>");
+		document.write("r3 = "+r3+"<br>");
+		
+		var value2 = "100.6";
+		var num3 = Number(value2); // 100.6 (실수형 반환)
+		var num4 = parseInt(value2); // 100 (반올림x)
+		
+		var r4 = num3 + 1;
+		var r5 = num4 + 1;
+		
+		document.write("r4 = "+r4+"<br>"); // 101.6
+		document.write("r5 = "+r5+"<br>"); // 101
+		
+	</script>
+</head>
+<body>
+
+</body>
+</html>

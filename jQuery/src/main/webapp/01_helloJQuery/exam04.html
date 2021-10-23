@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<h1 id="hello"></h1>
+	<p id="text">안녕 제이쿼리</p>
+	
+	<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#hello').html("Hello jQuery :)"); // 값 넣기(입력)
+			alert($('#text').html()); // 값 꺼내오기
+		});
+	</script>
+</body>
+</html>

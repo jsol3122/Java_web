@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="../css/event.css">
+</head>
+<body>
+	<h1>마우스 이벤트 확인하기</h1>
+	<div id="input">
+		Do it in Here~	
+	</div>
+	<h2>결과</h2>
+	<div id="result"></div>
+	
+	<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#input').mousedown(function(){ /* 마우스클릭됐을때 */
+				$('#result').html("Mouse Down Event");
+			});
+			
+			$('#input').mouseup(function(){ /* 마우스클릭에서 손 뗐을 때 */
+				$('#result').html("Mouse Up Event");
+			});
+			
+			$('#input').mouseenter(function(){ /* 마우스 커서가 영역 위에 올라왔을 때 */
+				$('#result').html("Mouse Enter Event (onMouseOver)");
+			});
+			
+			$('#input').mouseleave(function(){ /* 마우스 커서가 영역 위에서 빠져나왔을 떄 */
+				$('#result').html("Mouse Leave Event (onMouseOut)");
+			});
+		});
+	</script>
+</body>
+</html>

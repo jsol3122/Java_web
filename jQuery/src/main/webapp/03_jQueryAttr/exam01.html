@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<p><a href="#">Link</a></p>
+	
+	<input type="checkbox" name="" id="check" checked="checked">체크박스
+	
+	<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		document.write('<br><br>');
+		document.write('attr = '+$('a').attr('href')); // a태그에서 href속성의 값 가져오기 - attr()
+		document.write('<br>');
+		document.write('prop = '+$('a').prop('href')); // a태그에서 href속성의 값 가져오기 - prop()
+		document.write('<hr>');
+		
+		//-----------------------------------------------------------------------------
+		var check = $('#check');
+		
+		document.write('attr = '+check.attr('checked'));
+		document.write('<br>');
+		document.write('prop = '+check.prop('checked'));
+	</script>
+</body>
+</html>

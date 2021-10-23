@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		function sum(x, y){ // 구현부
+			return x + y;
+		}
+	
+		function showResult(){
+			var result = sum(10, 20);
+			var red_result = "<font color='red'>"+result+"</font>"; // 변수 따로잡아서 font양식부여도 가능
+			document.getElementById("question").innerHTML = red_result;
+		}
+		
+		function hideResult(){
+			document.getElementById("question").innerText = "?";
+		}
+	</script>
+</head>
+<body>
+	<h1 onmouseover="showResult()" onmouseout="hideResult()">
+		10 + 50 = <span id="question">?</span>
+	</h1>
+	<p>결과를 보시려면 수식 위에 마우스를 올려주세요</p>
+</body>
+</html>

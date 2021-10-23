@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		function sum(x, y){ // 구현부
+			return x + y;
+		}
+	
+		function printResult(){
+			var result = sum(10, 20);
+			
+			// id통해서 span태그 얻어오기 - result값을 span태그 안의 ? 에 대체하고 싶음
+			var myTag = document.getElementById("question");
+			
+			// alert(myTag); - 받아온 span태그의 객체주소값 출력됨
+			// alert(myTag.tagName); - 받아온 span태그의 이름 출력됨(명령어 이용)
+			
+			// myTag.innerText = result; - 받아온 span태그에 result의 문자열 입력
+			myTag.innerHTML = "<font size='6' color='red'>"+result+"</font>";
+		}
+	</script>
+</head>
+<body>
+	<h1>10 + 50 = <span id="question">?</span></h1>
+	<!--  button을 클릭했을 때 자바스크립트의 printResult()함수 호출 -->
+	<input type="button" value="결과보기" onclick="javascript:printResult()"/>
+</body>
+</html>

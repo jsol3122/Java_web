@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	<link rel="stylesheet" type="text/css" href="../css/reset.css" />
+</head>
+<body>
+	<h1 class="title">$.ajax() 함수를 사용한 XML데이터 읽기 (1)</h1>
+	<div class="exec">
+		<input type="button" value="xml데이터 가져오기" id="mybtn" />
+	</div>
+	<div class="console" id="result"></div>
+	
+	<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">	
+	$('#mybtn').click(function(){
+		$.ajax({
+			url: '../xml/xml01.xml',
+			type: 'get',
+			dataType: 'xml',
+			success: function(data){
+				// alert(data); - [object XMLDocument]처럼 출력
+				// alert($(data).text()); // data로 들어온 값 다 찍어보기
+				var title = $(data).find('title').text();
+				var time = $(data).find('time').text();
+				var teacher = $(data).find('teacher').text();
+				
+				// 화면에 출력하기 위해서 HTML요소를 동적으로 생성
+				var div = $('<div/>');
+				var p1 = $('<p/>').html(title);
+				var p2 = $('<p/>').html(time);
+				var p3 = $('<p/>').html(teacher);
+				
+				// 메서드 체인
+				div.append(p1).append(p2).append(p3);
+				
+				$('#result').append(div);
+			},
+			error: function(err){
+				alert(err);
+			}
+		});
+	});
+	</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<style type="text/css">
+		#box {
+		   background: #98bf21;
+		   height: 100px;
+		   width: 100px;
+		   position: absolute; /* 부모 div 영역 밖으로 밀려 나간다 */
+		   left: 0;
+		}
+	</style>
+</head>
+<body>
+	<h1>Animate</h1>
+	<button>
+	   Reset
+	</button>
+	<button>
+	   Ani1
+	</button>
+	<button>
+	   Ani2
+	</button>
+	<button>
+	   Ani3
+	</button>
+	<button>
+	   Ani4
+	</button>
+	<div id="animation-area" style="border: 1px solid red;">
+		<div id="box"></div>
+	</div>
+	
+	<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('button:eq(0)').click(function(){
+				$('#animation-area').html("<div id='box'></div>");
+			});
+			
+			// 좌측으로부터 250px 만큼 div 값을 이동
+			$('button:eq(1)').click(function(){
+				// css속성은 JSON형식으로 표현된다
+				$('#box').animate({
+					'left': '250px'
+				}, 1000, 'swing', function(){
+					alert('애니메이션이 종료되었습니다');
+				});
+			});
+			
+			// 좌측으로부터 250px 이동하고, 높이와 너비를 150px로 하라
+			$('button:eq(2)').click(function(){
+				// JSON형식의 CSS속성을 여러개 나열할 수 있으며
+				// CSS 속성을 제외한 나머지 파라미터들은 생략 가능
+				$('div').animate({ // 첫번째 div는 position: static; 이므로 left속성은 무시됨
+					left: '250px',
+					height: '150px',
+					width: '150px'
+				});
+			});
+
+			// 좌측으로부터 50px 이동하고, 높이와 너비를 50px씩 크게 하기
+			$('button:eq(3)').click(function(){
+				// 단항연산자를 사용하여 기존의 값에서 점점 누적되는 형태로 변경 가능
+				$('div').animate({ // 첫번째 div는 position: static; 이므로 left속성은 무시됨
+					left: '+=50px',
+					height: '+=50px',
+					width: '+=50px'
+				}, 300);
+			});
+			
+			// 애니메이션의 연속적 호출
+			$('button:eq(4)').click(function(){
+				var div = $('#box');
+				// 애니메이션 여러개를 연속적으로 사용하면, 
+				// 여러개의 장면이 순차적으로 실행됨
+				div.animate({height: '300px'}, 1000);
+				div.animate({width: '300px'}, 500);
+				div.animate({height: '100px'}, 800);
+				div.animate({width: '200px'}, 300);				
+			});
+			
+		});
+	</script>
+</body>
+</html>

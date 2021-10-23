@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		var score;
+		score = prompt("당신의 점수는??!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		
+		switch(Math.floor(score/10)){
+		case 10 : 
+		case 9 : grade = "A학점"; break;
+		case 8 : grade = "B학점"; break;
+		case 7 : grade = "C학점"; break;
+		case 6 : grade = "D학점"; break;
+		default : grade = "F학점";
+		}
+		
+		document.write("당신의 점수는 "+score/10+"이므로 "+grade+"입니다");
+		//------------------------------
+		
+		let num = 85.9876543;
+		console.log(num.toFixed(0));
+		console.log(num.toFixed(3));
+		
+		var a = "1.7";
+		console.log(a+3); // 결합
+		console.log(parseInt(a)+3); // parseInt는 반올림 안하고 소수점자리 다 없앰
+		console.log(Math.floor(a)+3); // Math.floor는 소수점 버리고 정수형반환
+		console.log(Number(a)+3); // Number는 소수점 그대로가져오고 숫자변환
+		console.log(~~a+3); // Matn.floor와 비슷 ( 소수점이하 다 버림 )
+		
+	</script>
+</head>
+<body>
+
+</body>
+</html>

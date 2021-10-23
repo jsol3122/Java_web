@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		function doSubmit(){
+			// 이름(text) 유효성검사 방법 1 - 이름란 입력 확인 
+/* 			if(document.form1.user_name.value==""){ 
+				alert("이름을 입력하세요")
+			} */
+			
+			// 이름(text) 유효성검사 방법 2 - 해당값은 true/false로 들어오니까 이렇게도 입력확인 가능
+			if(!document.form1.user_name.value){ 
+				alert("이름을 입력하세요");
+				document.form1.user_name.focus(); // 포커스 맞추기
+				return false; // 페이지이동 막아주기 (혹시몰라서 한번더 막은거임)
+			}
+			
+			// radio의 유효성 검사 - 둘 다 체크되지 않았는지 검증
+			if(!document.form1.gender[0].checked && !document.form1.gender[1].checked){
+				alert("성별을 선택하세요");
+				document.form1.gender[1].focus();
+				return false;
+			}
+			
+			// select의 유효성검사
+			if(document.form1.job.selectedIndex < 1){
+				alert("직업을 선택하세요");
+				document.form1.job.focus();
+				return false;
+			}
+			
+			// 체크박스 유효성검사 - 체크박스는 여러개 선택 가능이기 때문에 조금 다름
+			var chk = false;
+			for(var i=0; i<document.form1.hobby.length; i++){
+				if(document.form1.hobby[i].checked){
+					chk = true; // 하나라도 체크되어있다면 통과
+					break;
+				}
+			}
+			if(!chk){
+				alert("취미를 선택하세요");
+				document.form1.hobby[0].focus();
+				return false;
+			}
+			
+			// 최종 입력 확인
+			if(confirm("입력한 내용이 맞습니까?")){
+				return false;
+				// document.form1.submit(); -- 입력내용 확인 후 action타고 바로 페이지이동도 가능
+			}
+		}
+	</script>
+</head>
+<body>
+	<!-- <form name="form1" onsubmit="doSubmit();" action="https://www.naver.com"> -->
+	<form name="form1" onsubmit="doSubmit(); return false;" action="https://www.naver.com">
+		<fieldset>
+			<!--  legend태그는 fieldset요소의 캡션(caption)을 정의할 때 사용 -->
+			<legend>회원가입</legend>
+			
+			<label>이름 <input type="text" name="user_name"/></label>
+			<br/>
+			<label>성별</label>
+			<label><input type="radio" name="gender" value="M">남자</label>
+			<label><input type="radio" name="gender" value="F">여자</label> 
+			<!--  checked하면 창을 켰을 때 기본선택된 상태로 설정 / 이거하면 유효성검사 필요x -->
+			<br/>
+			<label>직업</label>
+			<select name="job">
+				<option>------ 선택하세요 ------</option>
+				<option value="dev">프로그래머</option>
+				<option value="pub">퍼블리셔</option>
+			</select>
+			<br/>
+			<label>취미</label>
+			<label><input type="checkbox" value="축구" name="hobby">축구</label>
+			<label><input type="checkbox" value="농구" name="hobby">농구</label>
+			<label><input type="checkbox" value="야구" name="hobby">야구</label>
+			<br/>
+			<label>&nbsp;</label>
+			<input type="submit" name="button" value="제출"/>
+			<input type="button" name="button2" value="리셋"/>
+		</fieldset>
+	</form>
+</body>
+</html>

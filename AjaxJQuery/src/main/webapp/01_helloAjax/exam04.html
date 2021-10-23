@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	<link rel="stylesheet" type="text/css" href="../css/reset.css" />
+</head>
+<body>
+	<h1 class="title">$.ajax() 함수를 사용한 텍스트 읽기</h1>
+	<div class="exec">
+		<input type="button" value="txt파일 가져오기" id="mybtn" />
+	</div>
+	<div class="console" id="result"></div>
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		$('#mybtn').click(function(){
+			$.ajax({
+				url: '../text/textdata.jsp',
+				type: 'get', // post방식으로 하더라도 밑의 data형식은 그대로임 (눈에만 안보일뿐임)
+				// 서버로 보내는 데이터 자체! - 변수=값, 의 형식으로 씀
+				// data: "keyword=" + "Hello AJax!",
+				data: {'keyword': 'Hello AJax!'}, // JSON방식 사용 예시
+				// 서버로부터 받는 데이터타입
+				dataType: 'text',
+				success: function(data){
+					$('#result').text(data);
+				},
+				error: function(){
+					console.log(err);
+				}
+			});
+		});
+	</script>
+</body>
+</html>

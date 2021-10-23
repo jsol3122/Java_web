@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		function sum(array){
+			let sum = 0;
+			for(let i=0; i<array.length; i++)
+				sum += array[i];
+			return sum;
+		}
+	
+		function range(start, end, step=start<end ? 1: -1){ 
+			let arr=[];
+			if(step>0) for(start; start<=end; start+=step) arr.push(start);
+			else for(start; start>=end; start+=step) arr.push(start);
+			return arr;
+		}
+		
+		console.log(sum(range(1, 10)));
+		console.log(sum(range(1, 10, 2)));
+		console.log(sum(range(5, 2, -1)));
+	</script>
+</head>
+<body>
+
+</body>
+</html>

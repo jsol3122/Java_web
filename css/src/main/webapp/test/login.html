@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>>마켓컬리 :: 내일의 장보기, 마켓컬리</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript">
+		function idpwd(){
+			if(document.getElementById("id").value=="")
+				alert("아이디를 입력하세요");
+			else if(document.getElementById("pwd").value=="")
+				alert("비밀번호를 입력하세요");
+			else document.form.submit();
+		}
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<div id="header">
+			<h1 class="logo"><a href="main.html">LOGO</a></h1>
+			
+			<dl class="topnav">
+				<dt class="blind">top navigation</dt>
+				<dd><a href="join.html">회원가입</a></dd>
+				<dd><a href="login.html">로그인</a></dd>
+			</dl>
+		</div> <!-- header -->
+		
+		<div id="containerLogin">
+			<form name="form" action="main.html">
+				<h1>로그인</h1>
+				<hr>
+				<br>
+				<br>
+				<div>
+					<input type="text" id="id" placeholder="아이디를 입력해주세요"/>
+				</div>
+				<div>
+					<input type="text" id="pwd" placeholder="비밀번호를 입력해주세요"/>
+				</div>
+				<div>
+					<input type="button" value="로그인" class="sbm" onclick="idpwd()"/>
+				</div>
+				<div>
+					<input type="button" value="회원가입" id="write" onclick="location.href='join.html'"/>
+				</div>
+			</form>
+			<br>
+			<br>
+			<hr>
+		</div> <!-- container -->
+	</div>
+	
+	<div id="footer">
+		<div class="footerArea">
+			<dl class="btmnav">
+				<dt class="blind">bottom navigation</dt>
+				<dd><a href="https://www.kurly.com/shop/introduce/about_kurly.php">컬리소개</a></dd>
+				<dd><a href="https://www.youtube.com/embed/WEep7BcboMQ?rel=0&showinfo=0&wmode=opaque&enablejsapi=1">컬리소개영상</a></dd>
+				<dd><a href="https://marketkurly.recruiter.co.kr/appsite/company/index">인재채용</a></dd>
+				<dd><a href="https://www.kurly.com/shop/service/agreement.php">이용약관</a></dd>
+				<dd><a href="https://www.kurly.com/shop/service/private.php">개인정보처리방침</a></dd>
+				<dd><a href="https://www.kurly.com/shop/service/guide.php">이용안내</a></dd>
+			</dl>
+			
+			<p class="cs">
+				<strong style="font-size: 20px">고객행복센터</strong><br>
+				<strong style="font-size: 50px">1644-1107</strong>
+			</p>
+		</div>
+	</div> <!-- footer -->
+</body>
+</html>

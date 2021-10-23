@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		div{
+			border: 2px solid yellowgreen;
+			color: blue;
+			background: aliceblue;
+		}
+		
+		span{
+			border: 3px dotted red;
+			background: yellow;
+		}
+	</style>
+</head>
+<body>
+	<h3>인라인, 인라인 블록, 블록</h3>
+	<hr>
+	<!-- 가운데 div가 한줄을 꽉 차지해버림 -->
+	나는 <div>div</div>입니다<br><br>
+	<!-- display:none은 공간차지x 보이지도 않음(처음부터 없언 요소처럼) -->
+	나는 <div style="display: none">div(none)</div>입니다<br><br>
+	<!-- visibility:hidden은 공간차지o 보이지 않음(텅빈 여백이 보임) -->
+	나는 <div style="visibility: hidden">div(hidden)</div>입니다<br><br>
+	<!-- div를 인라인으로 하면 span과 똑같은 효과(글자영역만큼만 공간차지) -->
+	나는 <div style="display: inline">div(inline)</div>입니다<br><br>
+	<!-- 인라인블럭은 크기조정 가능+나란히놓기도 가능 -->
+	나는 <div style="display: inline-block; height: 50px">div(inline-block)</div>입니다<br><br>
+	<!-- div안에 span을 block으로 잡았음(원래 span은 글자크기만큼만 영역설정/block설정해서 한줄꽉차게 됨 -->
+	나는 <div>div<span style="display:block">span(block)</span>입니다</div>
+</body>
+</html>

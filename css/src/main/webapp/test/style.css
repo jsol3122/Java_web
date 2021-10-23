@@ -1,0 +1,250 @@
+@charset "UTF-8";
+
+#wrap{ 
+	width: 1500px;
+	margin: 0 auto; 
+}
+
+body > #wrap{
+	height: auto;
+	min-height: 100%; 
+}
+.blind{
+	display: block;
+	overflow: hidden;
+	position: absolute;
+	left: 0;
+	top: -1000em;
+}
+a{
+	color: black;
+	text-decoration: none;
+}
+hr{
+	background: #66269a;
+	height: 1px;
+	border: 0;
+}
+
+/*  ---------------------- 헤더 ------------------------- */
+#header{
+	position: relative;
+	width: 1500px;
+	height: 150px;
+}
+.logo{
+	padding: 15px 680px;
+}
+.logo a{
+	display: block;
+	overflow: hidden;
+	width: 200px;
+	height: 100px;
+	background: url(../img/로고.png) no-repeat;
+	background-size: 200px 100px;
+	text-indent: -9999em;
+}
+.topnav{
+	position: absolute;
+	right: 10px;
+	top: 60px;
+}
+.topnav dd{
+	float: left;
+	padding-right: 18px;
+	margin-right: 5px;
+	margin-left: 10px;
+	background: url(../img/bg_topnav.png) no-repeat 100% 70%;
+}
+.topnav dd a{
+	font-size: 0.9em;
+}
+.topnav dd:last-child{
+	background: none;
+}
+
+/*  ------------------- 이벤트 배너 ------------------------- */
+.event{
+	background-position: center;
+}
+caption{
+	font-weight: bold;
+	font-size: 35px;
+	padding: 100px 0 40px;
+	color: #66269a;
+}
+.md{
+	margin: 40px 165px;
+}
+
+/* -------------------- 회원가입 ----------------------------- */
+form h1{
+	color: #66269a;
+	text-align: center;
+	text-indent: 1em;
+}
+form{
+	width: 1000px;
+	margin: 0 250px;
+}
+form div{
+	padding: 15px 50px;
+}
+form label{
+	display: inline-block;
+	width: 150px;
+	text-align: left;
+	padding: 0 30px;
+	font-weight: bold;
+}
+form input{
+	height: 45px;
+}
+form input[type=text], form input[type=email], form input[type=password]{
+	width: 500px;
+	margin-right: 20px;
+	text-indent: 1.5em;
+}
+form input[type=text]:focus, form input[type=email]:focus, form input[type=password]:focus{
+	background: #efddff;
+}
+.chk{
+	width: 120px;
+	height: 50px;
+	background: white;
+	font-weight: bold;
+	border: 1px solid #66269a;
+	border-radius: 4px;
+	color: #66269a;
+}
+
+/* ---------------------- 로그인창 -------------------------- */
+#containerLogin input{
+	margin: 0 215px;
+}
+#write{
+	width: 510px;
+	height: 60px;
+	background: white;
+	color: #66269a;
+	font-size: 18px;
+	border-radius: 4px;
+	border: 1px solid #66269a;
+}
+.sbm{
+	width: 510px;
+	height: 60px;
+	margin: 0 215px;
+	background: #66269a;
+	color: white;
+	font-size: 18px;
+	border-radius: 4px;
+	border: 1px solid #66269a;
+}
+/* .sbm{
+	background: #66269a;
+	color: white;
+	width: 510px;
+	height: 60px;
+	font-size: 18px;
+} */
+
+/* --------------------- 이벤트 ----------------------------- */
+.image{
+	margin: 0 20px;
+	float: left;
+}
+.text{
+	padding: 20px 50px;
+}
+#pay{
+	font-size: 30px;
+	margin-top: 1px;
+}
+#sale{
+	text-decoration: line-through;
+}
+#pay span{
+	color: red;
+	font-size: 40px;
+}
+#notice{
+	text-align: right;
+	font-size: 12px;
+	color: #66269a;
+}
+.text table{
+	padding: 5px 20px;
+}
+.text td{
+	border-collapse: collapse;
+}
+.text td:first-child{
+	width: 150px;
+	height: 30px;
+	font-weight: bold;
+	background: aliceblue;
+	text-align: center;
+}
+.text td:last-child{
+	padding-left: 20px;
+}
+#cart{
+	padding: 5px 0 5px 500px;
+	float: right;
+}
+.text input[type=button]{
+	width: 200px;
+	height: 50px;
+	background: #66269a;
+	color: white;
+	border-radius: 4px;
+	border: 0px;
+	font-weight: bold;
+}
+.text:after{
+	clear: both;
+}
+#detail{
+	padding: 200px 365px 100px;
+}
+.detailS{
+	padding: 0 300px;
+	text-align: center;
+	line-height: 1.9;
+}
+.detailS h1{
+	color: #66269a;
+}
+.detailS li{
+	text-align: left;
+}
+
+
+/* -------------------- footer ---------------------------- */
+#footer{
+	position: relative;
+	width: 1500px;
+	height: 150px;
+}
+.btmnav{
+	float: right;
+	margin-right: 30px;
+	margin-top: 30px;
+}
+.btmnav dd{
+	float: left;
+}
+.cs{
+	padding-left: 5px;
+	margin-left: 0;
+	color: #66269a;
+}
+.cs strong:first-child {
+	padding-left: 10px;
+}
+
+
+
+
+

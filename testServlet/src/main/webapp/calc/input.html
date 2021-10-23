@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		div{
+			font-size: 8px;
+			color: red;
+			font-weight: bold;
+		}
+	</style>
+	<script type="text/javascript">
+		function goCalc(){
+			document.getElementById("xDiv").innerText = "";
+			document.getElementById("yDiv").innerText = "";
+			
+			if(document.input.x.value == "") 
+				document.getElementById("xDiv").innerText = "x값을 입력하세요";				
+			else if(document.input.y.value == "") 
+				document.getElementById("yDiv").innerText = "y값을 입력하세요";
+			else document.input.submit();
+		}
+	</script>
+</head>
+<body>
+	<form name="input" method="get" action="http://localhost:8080/testServlet/CalcServlet">
+		<table border="1" cellspacing="0" cellpadding="5"> 
+			<tr>
+				<td width="40" align="center">X</td>
+				<td>
+					<input type="text" name="x" id="x">
+					<div id="xDiv"></div>
+				</td>
+			</tr>
+			<tr>
+				<td width="40" align="center">Y</td>
+				<td>
+					<input type="text" name="y" id="y">
+					<div id="yDiv"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="button" value="계산" onclick="goCalc()">
+					<input type="reset" value="취소">
+				</td>	
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

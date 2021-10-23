@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="../css/event.css">
+</head>
+<body>
+	<h1>this의 사용</h1>
+	<div id="input">
+		<h2>단독 개체의 확인</h2>
+		<div id="singleButton">클릭하세요.</div>
+	         
+		<h2>복수 개체의 확인</h2>
+		<div>
+			<button class="multiButton">클릭하세요.</button>
+			<button class="multiButton">클릭하세요.</button>
+			<button class="multiButton">클릭하세요.</button>
+			<button class="multiButton">클릭하세요.</button>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#singleButton').click(function(){
+				$(this).html('감사함다');
+			});
+			
+			$('.multiButton').click(function(){
+				// $(this).html('감사함다');
+				// $('.multiButton').html('감사함다'); 으로 클래스명으로 이벤트설정하면 클래스명설정된 모든객체에 적용됨
+			
+				var index = $(this).index();
+				var result = index + '번째 요소를 눌렀습니다';
+				$(this).html(result);			
+			});
+		});
+	</script>
+</body>
+</html>

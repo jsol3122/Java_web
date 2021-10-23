@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		#img {
+			width: 100px;
+			height: 150px;
+			background:url("img/back.png") no-repeat;
+			/* background-image: url("img/back.png");로 잡아도 됨 */
+			background-size: 100px 150px;
+		}
+		#img:hover {
+			width: 100px;
+			height: 150px;
+			background:url("img/7.png") no-repeat;
+			/* background-image: url("img/7.png");로 잡아도 됨 */
+			background-size: 100px 150px;
+		}
+	</style>
+</head>
+<body>
+	<h3>:hover 활용</h3>
+	<hr>
+	<table>
+	   <tr>
+	      <td>마우스를 올리면 카드의 앞면이 보인다.</td>
+	      <td><div id="img"></div></td>
+	   </tr>
+	</table>
+</body>
+</html>
+
+<!-- 다른 방법 -->
+<!-- <!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		img{
+		   position : absolute;
+		}
+		#img{
+		   visibility : hidden;
+		}
+		td:hover #img{
+		   visibility : visible;   
+		}
+
+</style>
+</head>
+<body>
+<h3>:hover 활용</h3>
+<hr>
+<table>
+   <tr>
+      <td>마우스를 올리면 카드의 앞면이 보인다.</td>
+      <td><img src="img/back.PNG" width="100" height="140">
+      <div id="img"><img src="img/7.png" width="100" height="140"></div></td>
+   </tr>
+</table>
+</body>
+</html> -->

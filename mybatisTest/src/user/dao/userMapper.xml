@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="userSQL">
+	<!-- 만약 오라클 컬럼명과 DTO 필드명을 다르게 잡았다면 해당 처리 필요 - 안그럼 매핑 안됨 
+	<resultMap type="user" id="userResult"> - type은 alias사용해서 짧게한것(원래 dto풀쿼리명 써주기)
+		<result property="DTO필드명" column="오라클칼럼명 - 여긴 대문자"/>
+	</resultMap>
+	이렇게 처리한 후 아래 sql문에서 resultType을 쓰지 않고 (resultType은 필드명=칼럼명일떄 쓰는것)
+	<select id="getUserList" resultMap="userResult"></select>
+	이렇게 내가 선언해놓은 resultMap을 이용해서 써야 함 -->
+
+	<insert id="write" parameterType="user"> <!-- alias 사용해서 user로만 쓴것 -->
+		insert into usertable values(#{name}, #{id}, #{pwd})
+	</insert>
+	
+	<select id="getUserList" resultType="user">
+		select * from usertable
+	</select>
+	
+	<select id="getUser" parameterType="String" resultType="String">
+		select id from usertable where id=#{id}
+	</select>
+	
+	<!-- map으로 값을 가져왔을 때는 parameterType="java.util.Map" 으로 설정 -->
+	<update id="update" parameterType="user">
+		update usertable set name=#{name}, pwd=#{pwd} where id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		delete usertable where id=#{id}
+	</delete>
+	
+	<!--  SQL 두개로 나눠서 쓴 경우 ( 내 숙제 )
+	<select id="searchName" parameterType="String" resultType="user">
+		select * from usertable where name like '%'||#{value}||'%'
+	</select>
+	
+	<select id="searchId" parameterType="String" resultType="user">
+		select * from usertable where id like '%'||#{value}||'%'
+	</select> 
+	-->
+	
+	<!-- map으로 칼럼명과 입력값 두가지를 가져온 경우 ( 선생님 풀이 ) -->
+	<!-- 칼럼명은 #{}과 같은 형식으로 ?값으로 받아올 수 없음 / sql문 자체에서 문제일으킴 -->
+	<select id="search" parameterType="java.util.Map" resultType="user">
+		<if test="columnName == 'name'">
+			select * from usertable where name like '%'||#{value}||'%'
+		</if>
+		<if test="columnName == 'id'">
+			select * from usertable where id like '%'||#{value}||'%'
+		</if>
+	</select>
+	 
+	<!-- #{}로 들어온 것은 literal값(value)으로 ?로 설정된 값이지만, ${}로 들어온 것은 상수값(final)임
+		select * from usertable where ${columnName} like '%'||#{value}||'%'
+		와 같이 칼럼명을 값이 아닌 상수화 시켜서 sql문에 쓸 수 있음 
+	 -->
+	
+	<!-- xml의 choose사용한 경우 - 다중if문과 같은 원리
+	<choose>
+		<when test="columnName == 'name'">
+			select * from usertable where name like '%'||#{value}||'%'
+		</when>
+		<otherwise>
+			select * from usertable where id like '%'||#{value}||'%'
+		</otherwise>
+	</choose>
+	 -->
+	
+</mapper>

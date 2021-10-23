@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<button id="btn1">slideUp</button>
+	<button id="btn2">slideDown</button>&nbsp;&nbsp;&nbsp;
+	
+	<button id="btn3">fadeIn</button>
+	<button id="btn4">fadeOut</button>&nbsp;&nbsp;&nbsp;
+	
+	<button id="btn5">slide toggle</button>
+	<button id="btn6">toggle</button>
+	
+	<p>이미지</p>
+	<img src="../img/1.jpg" width="400" height="400">
+	
+	<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+				$('#btn1').click(function(){
+					$('img').slideUp(1000); // 단위 1/1000초
+				});
+				
+				$('#btn2').click(function(){
+					$('img').slideDown(1000);
+				});
+				
+				$('#btn3').bind('click', function(){
+					$('img').fadeIn(1000); // 이미지가 천천히 나타남
+				});
+				
+				$('#btn4').bind('click', function(){
+					$('img').fadeOut(1000); // 이미지가 천천히 사라짐
+				});
+				
+				$('#btn5').bind('click', function(){
+					$('img').slideToggle(1000); // slideup, slidedown 번갈아
+				});
+				
+				$('#btn6').bind('click', function(){
+					$('img').toggle(1000); // fadein, fadeout 번갈아+대각선방향으로 사라짐
+				});
+		});
+	</script>
+</body>
+</html>

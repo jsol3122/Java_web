@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="../css/event.css">
+</head>
+<body>
+	<h1>속성 제어</h1>
+	<p>클릭하세요</p>
+	<img src="../img/1.jpg" width="300" height="300" alt="깜찍토끼"/>
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var index = 1;
+			
+			$('img').click(function(){
+				index = (index % 4) + 1; // 1~4 가 순서대로 나오도록 함
+				// $('img')대신 $(this)도 가능
+				if(index == 3) $('img').attr('src', '../img/'+index+'.jpeg');
+				else $('img').attr('src', '../img/'+index+'.jpg');
+			});
+		});
+	</script>
+</body>
+</html>

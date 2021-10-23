@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<title>Insert title here</title>
+	<style type="text/css">
+		html{
+			height: 100%;
+		}
+		
+		body{
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+		
+		#map{
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+	
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appKey=24282ca6394456bd97a8d711dfd3abff"></script>
+	<script type="text/javascript">
+		window.onload=function(){
+			//var position = new daum.maps.LatLng(37.50513385191259, 127.0490213730146); // 지도의 중심좌표 - 선릉역으로 설정
+			var position = new daum.maps.LatLng(37.499478229791826, 127.02902094241865); // 비트캠프 위치를 중심으로 설정한 경우
+			var container = document.getElementById("map"); // 표시할 위치
+			var options={
+					center: position,
+					level: 3 // 지도의 확대 레벨(정도)
+			};
+			
+			var map = new daum.maps.Map(container, options); // 지도 생성
+			var marker = new daum.maps.Marker({
+				position: position // 지도 중심좌표에 마커를 생성
+			});
+			
+			marker.setMap(map); // 지도에 마커를 표시
+		}
+	</script>
+</head>
+<body>
+	<div id="map"></div>
+</body>
+</html>

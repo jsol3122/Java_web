@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		function random(n1, n2){ // n1,n2로 난수 범위 잡아주기 
+			// Math내장함수 이용 (난수발생 + 소수점버리고 정수형으로 변환)
+			return Math.floor(Math.random()*(n2-n1+1))+n1; 
+		}
+	
+		function authNo(){
+			var value = "";
+			for(var i=1; i<=5; i++){
+				value += random(0, 9);
+			}
+			document.getElementById("auth").innerText = value;
+		}
+		
+		function refresh(){
+			location.reload(); // 새로고침한것처럼 현재의 리소스 다시 불러오기
+		}
+		
+		function goNaver(){
+			if(confirm("정말 네이버로 이동하시겠습니까?")){
+				location.href = "https://www.naver.com";
+			}
+		}
+	</script>
+</head>
+<body onload="authNo()">
+	<p>
+		<!--  strong태그 안이 자바스크립트 출력 부분 -->
+		고객님의 인증번호는 <strong id="auth">00000</strong>입니다
+	</p>
+	
+	<!--  페이지 새로고침 이벤트 호출 -->
+	<input type="button" value="인증번호 새로 받기" onclick="refresh()"/><br>
+	<input type="button" value="네이버로 이동하기" onclick="goNaver()"/>
+</body>
+</html>

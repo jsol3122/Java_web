@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		function insertQuestion(){
+			var input = prompt("사칙연산의 수식을 입력하세요. (예: 100+50)", "");
+			
+			// 문자열로 들어온 input을 수식으로 변환 - 수식자체가 아니라 수식을 처리한 연산결과값이 들어옴
+			var answer = eval(input);
+			
+			document.getElementById("question").innerText = input + "=" + answer;
+		}
+	</script>
+</head>
+<body onload="insertQuestion()">
+	<h1 id="question"></h1>	
+</body>
+</html>

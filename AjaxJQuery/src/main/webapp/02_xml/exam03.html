@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	<link rel="stylesheet" type="text/css" href="../css/reset.css" />
+</head>
+<body>
+	<h1 class="title">아이디 중복검사</h1>
+	<div class="exec">
+		<form>
+			<input type="text" name="user_id" />
+			<input type="button" id="checkId" value="중복검사" />
+		</form>
+	</div>
+	<div class="console"></div>
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		$('#checkId').click(function(){
+			var user_id = $('input[name=user_id]').val();
+			
+			if(!user_id){ // 유효성 검사 ( 값이 없을 땐 false 출력하므로 )
+				alert('아이디를 입력하세요');
+				$('input[name=user_id]').focus();
+				return false;
+			}
+			
+			$.get('../checkId/checkId.jsp',
+					{'user_id': user_id }, // 넘겨줘야 할 데이터 - JSON방식으로 표현한 경우 ( 문자열로표현도 가능 )
+					function(data){ // 성공시 실행할 함수 - 생략 가능 ( 받을데이터형식은 써도되지만 생략했음 )
+						// true or false 문자열로 데이터가 들어옴
+						var result_text = $(data).find('result').text();
+					
+						// 문자열인 true/false를 boolean형인 true/false로 변환해주는 함수 eval()
+						var result = eval(result_text);
+						alert(result);
+						
+						if(result){ // hong일때는 (db에 있는 아이디라고 가정) 사용할 수 없는 아이디임
+							$('.console').html('<span style="color: red;">사용할 수 없는 아이디입니다</span>');
+						}else{
+							$('.console').html('<span style="color: blue;">사용 가능한 아이디입니다</span>');
+						}
+						
+					}, 
+			); // get
+		});
+	</script>
+</body>
+</html>

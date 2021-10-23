@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>el_jst1</display-name>
+  
+  <!-- jsp에서 쓰는 환경설정 -->
+  <jsp-config>
+  	<taglib>
+  		<taglib-uri>tld</taglib-uri> <!-- 참조할때 아래의 풀쿼리보다 간결하게 써줄 경로이름 설정 -->
+		<taglib-location>/WEB-INF/elFunc.tld</taglib-location> <!-- tld의 위치 알려주기 -->
+  	</taglib>
+  </jsp-config>
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		function f(x, y){
+			var z = x + y;
+			
+			if(z < 10){
+				return; // 함수를 벗어나라
+			}
+			
+			return z;
+		}
+		
+		let a = f(2, 1);
+		let b = f(5, 7);
+		
+		document.write("<h3>"+a+"</h3>"); // undefined - if문걸려서 값없으니까
+		document.write("<h3>"+b+"</h3>");
+	</script>
+</head>
+<body>
+
+</body>
+</html>

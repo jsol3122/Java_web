@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		function open1(){
+			// 새 창 열림 - window내장객체 이용
+			window.open("open.html"); // open.html파일을 새 창으로 열기
+		}
+		
+		function open2(){
+			// 새 창이 다이얼로그처럼 팝업으로 열림 -- ("","","") 인자 3개 (기본적으로 다 no상태임)
+			window.open("open.html","","width=300, height=500, scrollbars=no, tollbar=no, menubar=no, status=no, location=no");
+		}
+		
+		function open3(url){
+			// 매개변수가 문자열로 들어옴 - 타겟명을 설정하면 해당 창은 한번만 팝업 가능
+			window.open(url,"myWindow","width=300, height=500, scrollbars=no, tollbar=no, menubar=no, status=no, location=no");
+		}
+		
+	</script>
+</head>
+<body>
+	<h1>window 객체</h1>
+	<h3>open 메소드 확인</h3>
+	<div>
+		<a href="#" onclick="open1(); return false;">새 창 열기</a>
+		<br>
+		<a href="#" onclick="open2(); return false;">팝업 창 열기(1)</a>
+		<br>
+		<a href="#" onclick="open3('https://www.naver.com'); return false;">팝업 창 열기(2-1)</a>
+		<br>
+		<a href="#" onclick="open3('https://www.daum.net'); return false;">팝업 창 열기(2-2)</a>
+		<br>
+		
+	</div>
+</body>
+</html>
+
+
+<!--  	
+a태그에서 onclick이 있을 경우 onclick먼저 수행 후 href로 이동!! 
+<a href="https://www.naver.com" onclick="alert('hi');">TEST1</a>
+	
+onclick에서 return false;가 있을 경우 href로 이동하지 않음 
+<a href="https://www.naver.com" onclick="alert('hi'); return false;">TEST1</a>
+	
+<a href="#" onclick="alert('hi');">TEST1</a> 
+-->

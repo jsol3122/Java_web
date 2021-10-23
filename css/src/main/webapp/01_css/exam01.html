@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		html, body {
+			margin: 0; /* ~~px을 잡으면 모서리부터 가로세로위아래 바깥간격(여백) 다 떨어짐*/
+			padding: 0; /* ~~px을 잡으면 모서리부터 가로세로위아래 안쪽간격(여백) 다 떨어짐*/
+			height: 100%; /* 화면에 꽉차게 하기*/
+		}
+		
+		.header{ 
+			width: 100%;
+			height: 15%;
+			background: yellow;
+		}
+		
+		.nav{
+			width: 15%;
+			height: 70%;
+			float: left; /*왼쪽으로 정렬해서 붙여라  --  중요개념 (나중에 다시 자세히설명)*/
+			background: orange;
+		}
+				
+		.section{
+			width: 70%;
+			height: 70%;
+			float: left; /*이미 nav를 왼쪽벽에 붙였는데 또 왼쪽에 붙이라니까 나란히 붙음*/
+			background: olivedrab;
+		}
+						
+		.aside{
+			width: 15%;
+			height: 70%;
+			float: left; /*이미 엪에것들 왼쪽벽에 붙였는데 또 왼쪽에 붙이라니까 나란히 붙음*/
+			background: orange;
+		}
+		
+		.footer{
+			width: 100%;
+			height: 15%;
+			/*clear: both; -- 모든 float을 해제해라(앞에서 왼쪽정렬해놔서 자동으로 얘도 붙었었음) -- 많이 쓰임*/
+			display: flex; /* clear: both;와 동일기능 -- 이것도 많이 씀 */
+			background: plum;
+		}
+	</style>
+</head>
+<body>
+	<header class="header">header</header>
+	<nav class="nav">nav</nav>
+	<section class="section">section</section>
+	<aside class="aside">aside</aside>
+	<footer class="footer">footer</footer>
+</body>
+</html>

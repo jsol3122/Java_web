@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		function arrayToList(array){
+			let list=null; // 마지막 list의 rest에 null값 주기 위해 null값 갖고 시작
+			for(let i=array.length-1; i>=0; i--){ // 마지막 배열값부터 넣어주며 가장 안쪽리스트부터 생성
+				list = {value: array[i], rest:list}; // 첫 반복에서는 list값이 null이므로 rest:null이 됨
+			}
+		return list;
+		}
+		
+		function listToArray(list){
+			let array = [];
+			for(let node=list; node; node=node.rest){ // node값이 null일때까지 반복 = list끝까지
+				array.push(node.value);
+			}
+		return array;
+		}
+		
+		function prepend(value, list){
+			return {value, rest: list};
+		}
+		
+		function nth(list, number){ // 재귀함수 nth버전 - number에 해당하는 요소 출력
+			if(!list) return undefined;
+			else if(number == 0) return list.value;
+			else return nth(list.rest, number-1);
+		}
+		
+		console.log(arrayToList([10, 20])); // {value:10, rest:{value20, rest:null}}
+		console.log(listToArray(arrayToList([10, 20, 30]))); // [10, 20, 30]
+		console.log(prepend(10, prepend(20, null))); // {value:10, rest:{value:20, rest:null}}
+		console.log(nth(arrayToList([10, 20, 30]), 1)); // 20
+	</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+@charset "UTF-8";
+@import url(common.css);
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css); /* 웹사이트에서 폰트얻어쓰기 */
+
+#wrap{ /* header ~ footer 다 감싸고 있음 */
+	width: 760px;
+	margin: 0 auto; /* auto는 가운데정렬 */
+}
+
+body > #wrap{
+	height: auto;
+	min-height: 100%; /* 최소한 높이가 이정도는 되도록 -- 본문짧아져도 땡겨지지 않도록 - footer는 항상 화면밖으로 쫓겨남(스크롤내려야보임) */
+	background: url(../img/bg_snb.png) repeat-y 170px 0; /* 본문짧으면 옆선 사라지니까 -- 근데 header부분에도 선생겨버림 */
+}
+
+/* header */
+#header{
+	position: relative; /* .topnav의 부모인 header가 relative되어있어야 .topnav의 absolute포지션이 제대로 적용됨 */
+	padding-bottom: 99px; /* 이미지넣을 공간 띄워놓기 */
+	border-bottom: 1px solid #cccccc;
+	background: #fff url(../img/bg_header.png) no-repeat 50% 100%; /* wrap에서만든 선 흰색처리해서 감춤 */
+}
+.logo{
+	padding: 12px 0 12px 26px;
+}
+.logo a{
+	display: block;
+	overflow: hidden;
+	width: 90px;
+	height: 30px;
+	background: url(../img/logo.png) no-repeat;
+	text-indent: -9999em; /* 들여쓰기를 -로 잡았으니까 밖으로 내어쓰기됨 = 프레임밖으로 가서 안보임 */
+}
+.topnav{
+	position: absolute; /* absolute쓰려면 부모가 필요하며, 부모에 relative설정되어있어야 함 */
+	right: 35px;
+	top: 18px;
+}
+.topnav dd{
+	float: left;
+	padding-right: 11px;
+	margin-right: 10px;
+	background: url(../img/bg_topnav.png) no-repeat 100% 50%;
+}
+.topnav dd:last-child{ /* 마지막 |는 사라져야 하니까 */
+	padding-right: 0;
+	margin-right: 0;
+	background: none;
+}
+.topnav dd a{
+	color: black;
+	font-size: 0.9em;
+}
+.mainnav{
+	padding-left: 50px;
+	background-color: #005B9B;
+}
+.mainnav:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.mainnav li{
+	float: left;
+}
+.mainnav li a{
+	display: block;
+	padding: 0 13px;
+	background-color: #005B9B;
+	color: #ffffff;
+	font: bold 16px/40px 'Nanum Gothic', sans-serif; /* 폰트크기/line-height를 말하는 것 */
+	text-transform: uppercase;
+	text-decoration: none;
+}
+.mainnav li a:hover{
+	color: #660000;
+	background-color: #ffcc00;
+}
+/* header 끝~~~~~~~*/
+
+/* container */
+#container{
+	padding-bottom: 121px; /* 본문내용이 적을 때 footer가 겹칠수있게 여백늘리기 */
+}
+#container:after{ /* container속성 끝난 뛰 */
+	content: ''; /* 아무내용도 붙이지 마세요 - 내용 넣을거면 ''안에 써주기 */
+	display: block;
+	clear: both; /* clear안하면 float땜에 왼쪽으로 붙어버림 */
+}
+
+/* snb */
+.snb{
+	float: left;
+	width: 170px;
+}
+.snb h2{
+	padding: 28px 14px 8px 0;
+	margin-left: 11px;
+	margin-bottom: 15px;
+	border-bottom: 1px solid #cccccc;
+	color: #005B9B;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: right;
+}
+.snb ul a{
+	display: block;
+	padding-right: 14px;
+	color: #005B9B;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: right;
+	text-decoration: none;
+	line-height: 30px;
+}
+.snb ul a:hover{
+	color: #660000;
+	text-decoration: underline;
+}
+/* content */
+#content{ /* 부모부분에 relative가 걸려있으니 자식태그에 absolute포지션 설정 가능 */
+	position: relative;
+	float: right;
+	width: 560px;
+}
+.locate{
+	position: absolute; /* 부모기준 포지션 배치 */
+	right: 28px;
+	top: 26px;
+	color: #ccc;
+	font-size: 0.9em;
+	word-spacing: 0.3em;
+}
+.locate a{
+	color: #666666;
+}
+.locate strong{
+	font-weight: normal;
+	color: #666666;
+	word-spacing: 0em;
+}
+
+#content h2{
+	padding: 24px 0; /* 위아래 좌우 */
+	color: #005B9B;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+}
+#content .thum{
+	float: left;
+	margin-left: 14px;
+}
+#content .thum img{
+	width: 114px;
+	height: 111px;
+	border: 1px solid #cccccc;
+}
+#content .text{
+	margin-left: 148px;
+}
+#content .text p{
+	margin-bottom: 15px;
+	line-height: 1.4; /* 줄간격 - 웹브라우저에서 정한 기본값이 보통 1.2임 */
+}
+/* container 끝~~~~~~~~~*/
+
+/* footer  --- wrap에서 쫓겨나야 함 */
+#footer{ /* 전체 footer위치 이동시키는 역할 - 한 덩어리째로 가지고있어야 자유롭게 이동 가능 */
+	position: relative;
+	margin-top: -101px; /* 본문에서 넉넉히 잡아놓은 여백에 겹쳐올라갈수있게 - wrap에 포함된거처럼 바짝 끌려올라가진x */
+	background-color: #fff; /* wrap에서 그어놓은 왼쪽선 안보이게 흰색처리 */
+}
+#footer .footerArea{ /* 안의 개별 요소들 설정 - 하나로 요소들을 감싸서 한덩어리로 만드는 중간단계area가 있어야 footer째로 이동이 가능*/
+	border-top: 1px solid #cccccc;
+	padding: 0;
+	height: 100px; /* footer높이만큼을 -마진탑줘서 본문위로 끌어 당기기 */
+	color: #666;
+	font-size: 0.9em;
+	width: 760px;
+	margin: 0 auto;
+}
+#footer .footerArea:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.btmnav{
+	float: right; /* 다음 요소들에 float이 필요없다면 반드시 clear시켜줘야함 */
+	margin-right: 30px;
+	margin-top: 18px;
+}
+.btmnav dd{
+	float: left;
+}
+.btmnav dd:after{
+	content: '|';
+	padding: 0 0.7em;
+	color: #999;
+}
+.btmnav dd:last-child:after {
+	content: ''; /* 마지막 dd 뒤에는 |이 없어야 함 */
+	padding: 0 0;
+}
+.copy{
+	float: left;
+	line-height: 1.8;
+	margin-left: 20px;
+	margin-top: 18px;
+}
+/* footer 끝~~~~~~~~~~*/
+
+

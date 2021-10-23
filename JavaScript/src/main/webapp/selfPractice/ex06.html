@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript"> // string[n] 을 쓰면 문자열에서 n번째 문자를 가져올 수 있음
+		function countBs(string){
+			return countChar(string, "B");
+		}
+		
+		function countChar(string, str){
+		let cnt=0;
+			for(i=0; i<string.length; i++){
+				if(string[i]==str) cnt++;
+			}
+		return cnt;
+		}
+		
+		console.log(countChar("DFDASDF", "D"));
+	</script>
+</head>
+<body>
+
+</body>
+</html>
