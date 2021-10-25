@@ -1,29 +1,22 @@
 package member.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import member.bean.MemberDTO;
 import member.bean.ZipcodeDTO;
 
-public class MemberDAO {
-	private Connection conn = null;
-	private PreparedStatement pstmt;
-	private ResultSet rs;
-	
-	private DataSource ds;
-	
+public class MemberDAO {	
 	private static MemberDAO instance = null;
+	private SqlSessionFactory sqlSessionFactory;
 	
 	public static MemberDAO getInstance() {
 		if(instance == null) {  
@@ -36,13 +29,27 @@ public class MemberDAO {
 
 	public MemberDAO() {
 		try {
-			Context ctx = new InitialContext();
-			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/oracle");
-		} catch (NamingException e) {
+			Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
+			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+		} catch (IOException e) {
 			e.printStackTrace();
-		}	
-	} // 생성자
+		}
+	} // 생성자 
 
+	public MemberDTO login(String id, String pwd) {
+		// mybatis는 두개의 매개변수 가져가지 못하므로 map으로 묶어서 가져가기
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("pwd", pwd);
+		
+		SqlSession sqlSession = sqlSessionFactory.openSession(); // 생성
+		MemberDTO memberDTO = sqlSession.selectOne("memberSQL.login", map);
+		sqlSession.close();
+		
+		return memberDTO;
+	}
+
+	/*
 	// PreparedStatement
 	public void write(MemberDTO memberDTO) {
 		String sql = "insert into member values(?,?,?,?,?,?,?,?,?,?,?,?,sysdate)";
@@ -268,5 +275,5 @@ public class MemberDAO {
 			}
 		}
 	} // memInfoUpdate()
-	
+	*/
 }

@@ -123,6 +123,11 @@
 				$.post(url, $(this).serialize(), function(data){
 					var result = eval($(data).find('result').text()); // 문자열로 들어온데이터를 boolean형변환
 				
+					if(result){
+						alert($(data).find('message').text());
+						//return false;
+					}
+					
 					var num = $(data).find('num').text();
 					var writer = $(data).find('writer').text();
 					var content = $(data).find('content').text();

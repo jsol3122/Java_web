@@ -22,19 +22,16 @@ public class LoginService implements CommandProcess {
 		MemberDTO memberDTO = memberDAO.login(id, pwd);
 		
 		// 응답 - js파일의 ajax에서 요청한거니까 거기로 다시 응답이 돌아가는 것임
-		if(memberDTO == null)
-			return "fail";
-		else {
+		if(memberDTO != null){
 			// 세션
 			HttpSession session = request.getSession(); // 세션은 인터페이스라 new생성 불가
 			session.setAttribute("memName", memberDTO.getName());
 			session.setAttribute("memId", id);
 			session.setAttribute("memEmail", memberDTO.getEmail1()+"@"+memberDTO.getEmail2());
 			
-			// session.setAttribute("memDTO", memberDTO);  이렇게 DTO째로 세션에 넣어도 됨
-			
-			return "ok";
+			session.setAttribute("memDTO", memberDTO); // 이렇게 DTO째로 세션에 넣어도 됨
 		}
+		return "/member/login.jsp";
 	}
 
 }

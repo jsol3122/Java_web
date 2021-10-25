@@ -52,9 +52,9 @@
 	</style>
 </head>
 <body>
-	<header>
+	<header> <!-- 대개 회사마크/로고 등이 뜸 -->
 		<h1>
-			<img alt="토끼" src="/MQBProject/image/1.jpg" width="100" height="100">MVC기반의 미니 프로젝트
+			<img alt="헤더토끼" src="/MQBProject/image/2.jpg" width="100" height="100">MVC기반의 미니 프로젝트
 		</h1>
 		
 		<jsp:include page="main/menu.jsp" />
@@ -69,7 +69,7 @@
 			<h1>
 				홈페이지를 방문해주셔서 감사합니다<br>
 				Have a nice day :)<br>
-				<img alt="토끼" src="/MQBProject/image/2.jpg" width="500" height="500">
+				<img alt="본문토끼" src="/MQBProject/image/1.jpg" width="500" height="500">
 			</h1>
 		</section>
 	</div>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	<link rel="stylesheet" type="text/css" href="../css/reset.css" />
+</head>
+<body>
+	<h1 class="title">$.ajax() 함수를 사용한 JSON데이터 읽기 (1)</h1>
+	<div class="exec">
+		<input type="button" value="JSON데이터 가져오기" id="mybtn" />
+	</div>
+	
+	<div class="console" id="result"></div>
+	
+	<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		$('#mybtn').click(function(){
+			$.ajax({
+				url: '../json/json01.json',
+				type: 'get',
+				dataType: 'json', // json형식으로 데이터 받아옴
+				success: function(data){
+					// alert(JSON.stringify(data)); - 문자열로 들어온 데이터들을 json형식 string화시킴
+					
+					var title = data.school.subject.title;
+					var time = data.school.subject.time;
+					var teacher = data.school.subject.teacher;
+					
+					var ul = $('<ul>');
+					var li1 = $('<li>').html(title);
+					var li2 = $('<li>').html(time);
+					var li3 = $('<li>').html(teacher);
+					
+					$('#result').append(ul.append(li1).append(li2).append(li3));
+				},
+				error: function(err){
+					console.log(err);
+				}
+			});
+		});
+	</script>
+</body>
+</html>

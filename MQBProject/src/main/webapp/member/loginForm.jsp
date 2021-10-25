@@ -38,6 +38,8 @@
 				</td>
 			</tr>
 		</table>
+		<br><br>
+		<div id="loginResult"></div>
 		
 		<!-- <iframe id="iframe" name="iframe" style="display: none"></iframe> -->
 	</form>

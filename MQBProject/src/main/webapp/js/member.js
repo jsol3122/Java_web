@@ -106,12 +106,23 @@ $(function(){
 		});*/
 		else{ // submit하면 페이지가 이동되어버리니까
 			$.ajax({
-				url: '/MQBProject/member/login.do',
+				url: '/MQBProject/member/login.do', // 컨트롤서블릿파일로 요청이 갔음
 				type: 'post',
 				data: 'id='+$('#id').val()+'&pwd='+$('#pwd').val(),
 				dataType: 'text', // 로그인 성공실패를 받아와서 처리할예정 (여기서안받고 다른데서 처리해도 됨)
 				success: function(data){
-					alert(data);
+					// 서블릿을 거쳐서 자바파일로 간 요청은, jsp파일로 응답이 서블릿을 거쳐서 포워딩된 형태로 돌아옴
+					alert(data); // 확인용
+					data = data.trim();
+					
+					if(data == 'ok'){
+						location.href = 'index.jsp'
+					}else if(data == 'fail'){
+						$('#loginResult').text('아이디 또는 비밀번호가 맞지 않습니다')
+						$('#loginResult').css('color', 'red')
+						$('#loginResult').css('font-size', '15pt')
+						$('#loginResult').css('font-weight', 'bold')
+					}
 				},
 				error: function(err){
 					console.log(err);
