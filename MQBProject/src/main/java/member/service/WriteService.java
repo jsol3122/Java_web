@@ -12,8 +12,6 @@ public class WriteService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		// 이부분은 서블릿에서 이미 post일떄 한글처리하라고 걸어놓은곳을 거쳐서 온거라서 생략하기
-		// request.setCharacterEncoding("UTF-8"); 
 		
 		String name = request.getParameter("name");
 		String id = request.getParameter("id");

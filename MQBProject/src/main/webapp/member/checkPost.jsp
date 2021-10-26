@@ -15,12 +15,12 @@
 </style>
 </head>
 <body>
-<form name="zipcodeForm" action="/mvcmember/member/checkPost.do">
+<form id="checkPostForm">
 	<table border="1" cellspacing="0" cellpadding="5" width="475" >
 		<tr>
 			<td align="center">시도</td>
 			<td align="center">
-				<select name="sido">
+				<select name="sido" id="sido">
 					<option>시도선택</option>
 					<option value="서울">서울</option>		
 					<option value="인천">인천</option>	
@@ -42,14 +42,14 @@
 				</select>
 			</td>
 			<td align="center">시.군.구</td>
-			<td align="center"><input type="text" name="sigungu"></td>
+			<td align="center"><input type="text" name="sigungu" id="sigungu"></td>
 		</tr>
 		
 		<tr>
 			<td align="center">도로명</td>
 			<td colspan="3">
-				<input type="text" name="roadname" size="40">
-				<input type="submit" value="검색">
+				<input type="text" name="roadname" id="roadname" size="40">
+				<input type="button" id="checkPostSearchBtn" value="검색">
 			</td>
 		</tr>
 		
@@ -83,6 +83,6 @@
 </form>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="http://localhost:8080/mvcmember/js/member.js"></script> 
+<script type="text/javascript" src="http://localhost:8080/MQBProject/js/member.js"></script> 
 </body>
 </html>

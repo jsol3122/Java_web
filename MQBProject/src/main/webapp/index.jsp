@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,7 +55,8 @@
 <body>
 	<header> <!-- 대개 회사마크/로고 등이 뜸 -->
 		<h1>
-			<img alt="헤더토끼" src="/MQBProject/image/2.jpg" width="100" height="100">MVC기반의 미니 프로젝트
+			<img alt="헤더토끼" src="/MQBProject/image/2.jpg" width="100" height="100"
+			onclick="location.href='/MQBProject/index.jsp'" style="cursor: pointer">MVC기반의 미니 프로젝트
 		</h1>
 		
 		<jsp:include page="main/menu.jsp" />
@@ -66,11 +68,12 @@
 		</nav>
 		
 		<section>
-			<h1>
-				홈페이지를 방문해주셔서 감사합니다<br>
-				Have a nice day :)<br>
-				<img alt="본문토끼" src="/MQBProject/image/1.jpg" width="500" height="500">
-			</h1>
+			<c:if test="${empty display }">
+				<jsp:include page="main/body.jsp" />
+			</c:if>
+			<c:if test="${not empty display }">
+				<jsp:include page="${display }" />
+			</c:if>
 		</section>
 	</div>
 	

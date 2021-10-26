@@ -5,11 +5,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.control.CommandProcess;
 
-public class CheckPostService implements CommandProcess {
+public class CheckPostSearchService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		return "/member/checkPost.jsp";
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

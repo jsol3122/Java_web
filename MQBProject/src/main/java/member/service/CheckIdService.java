@@ -15,14 +15,11 @@ public class CheckIdService implements CommandProcess{
 		String id = request.getParameter("id");
 		
 		MemberDAO memberDAO = MemberDAO.getInstance();
-		boolean yn = memberDAO.checkId(id);
-		request.setAttribute("id", id);
-		// 여기서 request안에 안넣어놔도, 같은 request공유하니까 param.id로 바로 갖고올 수 있음
+		boolean exist = memberDAO.isCheckId(id);
 		
-		if(yn) 
-			return "/member/checkIdFail.jsp";
-		else 
-			return "/member/checkIdOk.jsp";
+		request.setAttribute("exist", exist);
+
+		return "/member/checkId.jsp";
 				
 	}
 
