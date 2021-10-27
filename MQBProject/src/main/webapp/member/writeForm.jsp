@@ -83,7 +83,7 @@
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				<input type="button" value="회원가입" id="writeBtn" onclick="checkWrite()">
+				<input type="button" value="회원가입" id="writeBtn">
 				<input type="reset" value="다시작성">
 			</td>
 		</tr>

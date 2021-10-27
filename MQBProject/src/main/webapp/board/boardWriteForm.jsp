@@ -17,10 +17,9 @@
 					url: '/MQBProject/board/boardWrite.do',
 					type: 'post',
 					data: $('#boardWriteForm').serialize(),
-					dataType: 'text',
-					success: function(data){
-						alert(data);
-						location.href='/MQBProject/index.jsp';
+					success: function(){
+						alert('글쓰기 성공 ;p');
+						location.href='/MQBProject/board/boardList.do?pg=1';
 					},
 					error: function(err){
 						console.log(err);

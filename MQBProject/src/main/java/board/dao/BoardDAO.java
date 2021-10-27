@@ -3,7 +3,9 @@ package board.dao;
 import java.io.IOException;
 import java.io.Reader;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -41,6 +43,26 @@ public class BoardDAO {
 		sqlSession.commit();
 		sqlSession.close();		
 	} // 글쓰기
+
+	public List<BoardDTO> getBoardList(int startNum, int endNum) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<BoardDTO> list = sqlSession.selectList("boardSQL.getBoardList", map);
+		sqlSession.close();
+		
+		return list;
+	}
+
+	public int getTotalA() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int totalA = sqlSession.selectOne("boardSQL.getTotalA");
+		sqlSession.close();
+		
+		return totalA;
+	}
 	
 /*	
 	public List<BoardDTO> getBoardList(int startNum, int endNum){

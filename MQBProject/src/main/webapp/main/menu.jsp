@@ -34,12 +34,9 @@
 
 <ul class="mainnav">
 	<li>
-		<c:if test="${memId == null }">
-			<a href="#">글쓰기</a>
-		</c:if>
 		<c:if test="${memId != null }">
 			<a href="/MQBProject/board/boardWriteForm.do">글쓰기</a>
 		</c:if>
 	</li>
-	<li><a href="">목록</a></li>
+	<li><a href="/MQBProject/board/boardList.do?pg=1">목록</a></li>
 </ul>

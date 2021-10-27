@@ -32,7 +32,8 @@ public class BoardListService implements CommandProcess {
 		request.setAttribute("totalA", totalA);
 		request.setAttribute("totalP", totalP);
 		
-		return "/board/boardList.jsp";
+		request.setAttribute("display","/board/boardList.jsp");
+		return "/index.jsp";
 	}
 
 }

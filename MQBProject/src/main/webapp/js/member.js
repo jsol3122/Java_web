@@ -45,22 +45,48 @@ $('#checkPostSearchBtn').click(function(){
 		data: $('#checkPostForm').serialize(), // 각 요소는 name속성을 통해 가져옴
 		dataType: 'json', // list로 받아와야 하는데 적절한게 이것뿐
 		success: function(data){
-			alert(JSON.stringify(data));
+			// alert(JSON.stringify(data)); -- 확인용
+			
+			$('#zipcodeTable tr:gt(2)').remove(); // 테이블에서 맨 위 3줄 빼고 나머지는 검색누를때마다 초기화
+			
+			$.each(data.list, function(index, items){
+				var address = items.sido+' '
+							+ items.sigungu+' '
+							+ items.yubmyundong+' '
+							+ items.ri+' '
+							+ items.roadname+' '
+							+ items.buildingname;
+				
+				// undefined라는 내용을 g(=global,전체)에서 찾아서 ''으로 바꾸기
+				address = address.replace(/undefined/g, ''); 
+				
+				$('<tr/>').append($('<td/>',{ // td태그 안의 내용
+					align: 'center',
+					text: items.zipcode
+				})).append($('<td/>',{
+					colspan: 3,
+				}).append($('<a/>',{
+					href: '#',
+					text: address,
+					class: 'addressA'
+				}))).appendTo($('#zipcodeTable'));
+			}); // each
+			
+			// 주소 클릭하면 회원가입 폼으로 값 이동시키기
+			$('.addressA').click(function(){ 
+				// alert($(this).text()); -- 주소값 출력
+				// alert($(this).parent().prev().text()); -- 우편번호 출력
+	
+				$('#zipcode', opener.document).val($(this).parent().prev().text()); // 우편번호 넣기
+				$('#addr1', opener.document).val($(this).text()); // 주소 넣기
+				window.close();
+				$('#addr2', opener.document).focus();
+			});
 		},
 		error: function(err){
 			console.log(err);
 		}
 	});
-});
-
-$('.addressA').click(function(){
-	// alert($(this).text()); -- 주소값 출력
-	// alert($(this).parent().prev().text()); -- 우편번호 출력
-	
-	$('#zipcode', opener.document).val($(this).parent().prev().text()); // 우편번호 넣기
-	$('#addr1', opener.document).val($(this).text()); // 주소 넣기
-	window.close();
-	$('#addr2', opener.document).focus();
 });
 
 // 제이쿼리 이용 방법 - onload방식 ( 파일 load되자마자 함수 읽기 )
@@ -90,9 +116,9 @@ $(function(){
 				url: '/MQBProject/member/write.do',
 				type: 'post',
 				data: $('#writeForm').serialize(),
-				dataType: 'text',
-				success: function(data){
-					alert(data);
+				// dataType: 'text', - 생략가능 ( 여기생략 = success의 data도 생략 )
+				success: function(){
+					alert('회원가입을 축하합니다 XD');
 					location.href='/MQBProject/index.jsp';
 				},
 				error: function(err){
@@ -125,11 +151,11 @@ $(function(){
 				dataType: 'text', // 로그인 성공실패를 받아와서 처리할예정 (여기서안받고 다른데서 처리해도 됨)
 				success: function(data){
 					// 서블릿을 거쳐서 자바파일로 간 요청은, jsp파일로 응답이 서블릿을 거쳐서 포워딩된 형태로 돌아옴
-					alert(data); // 확인용
+					// alert(data); -- 확인용
 					data = data.trim();
 					
 					if(data == 'ok'){
-						location.href = 'index.jsp'
+						location.href = '/MQBProject/index.jsp'
 					}else if(data == 'fail'){
 						$('#loginResult').text('아이디 또는 비밀번호가 맞지 않습니다')
 						$('#loginResult').css('color', 'red')

@@ -22,7 +22,8 @@ public class LogoutService implements CommandProcess {
 		session.invalidate();
 		
 		// 응답
-		return "/member/logout.jsp";
+		request.setAttribute("display", "/member/logout.jsp");
+		return "/index.jsp";
 	}
 
 }

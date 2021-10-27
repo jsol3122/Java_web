@@ -10,4 +10,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values
 		(seq_board.nextval, #{id}, #{name}, #{email}, #{subject}, #{content}, seq_board.currval, sysdate)
 	</insert>
+	
+	<!-- 게시판 글목록 불러오기 -->
+	<select id="getBoardList" parameterType="java.util.Map" resultType="board">
+		select * from (
+			select rownum rn, tt.* from (
+				select * from board order by ref desc, step asc) 
+			tt) 
+		where rn<![CDATA[>=]]>#{startNum} and rn<![CDATA[<=]]>#{endNum}
+	</select>
+	
+	<!-- 총 글 수 구하기 -->
+	<select id="getTotalA" resultType="int">
+		select count(*) from board
+	</select>
 </mapper>

@@ -8,6 +8,10 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<style type="text/css">
+		#boardListPage a:nth-child(${pg}){
+			color: red;
+		}
+		
 		a{
 			text-decoration: none;
 			color: black;
@@ -21,40 +25,44 @@
 			color: limegreen;
 		}
 	
-		div a:nth-child(${pg}){
-			color: red;
-		}
-		
-		table{
+		#boardListForm table{
 			width: 100%;
-			border-top: 1px solid blue;
+			border-top: 2px solid blue;
 			/* border-collapse: collapse; */
 		}
 		
-		#title td{
-			font-weight: bold;
+		#boardListForm #title th{
+			border-bottom: 2px solid blue;
 			font-size: 15px;
 			height: 30px;
 			color: blue;
 		}
 		
-		td{
+		#boardListForm td{
 			border-bottom: 1px solid blue;
 			text-align: center;
 			font-size: 13px;
+			color: black;
+		}
+		
+		#boardListPage{
+			width: 100%; 
+			text-align: center;
+			position: relative;
+			left: -330px;
 		}
 	</style>
 </head>
 <body>
-	<table cellspacing="0" cellpadding="5"><!-- frame="hsides" rules="rows"로 가로줄만 나오게! -->
+	<table id="boardListForm" cellspacing="0" cellpadding="5"><!-- frame="hsides" rules="rows"로 가로줄만 나오게! -->
 		<tr id="title">
-			<td>글번호</td> <!-- td대신 th로 잡으면 자동으로 중앙정렬됨 -->
-			<td style="width: 200px">제목</td>
-			<td>작성자</td>
-			<td>조회수</td>
-			<td style="width: 100px">작성일</td>
+			<th>글번호</td> <!-- td대신 th로 잡으면 자동으로 중앙정렬됨 -->
+			<th style="width: 200px">제목</td>
+			<th >작성자</td>
+			<th>조회수</td>
+			<th style="width: 130px">작성일</td>
 		</tr>
-	<c:if test="${requestScope.list != null}"> 
+	<c:if test="${list != null}"> 
 		<c:forEach var="boardDTO" items="${list }">
 		<tr>
 			<td>${boardDTO.seq }</td>
@@ -68,9 +76,9 @@
 		</c:forEach>
 	</table>
 	<br><br>
-	<div style="width: 100%; text-align: center;">
+	<div id="boardListPage">
 		<c:forEach var="i" begin="1" end="${totalP }">
-			[<a href="/mvcmember/board/boardList.do?pg=${i }"> ${i } </a>]
+			[<a href="/MQBProject/board/boardList.do?pg=${i }"> ${i } </a>]
 		</c:forEach>
 	</div>
 	</c:if> 

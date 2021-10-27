@@ -12,11 +12,15 @@
 		width: 80px;
 		font-size: 10pt;
 	}
+	.addressA:link{color: black; text-decoration: none;}
+	.addressA:visited{color: black; text-decoration: none;}
+	.addressA:hover{color: tomato; text-decoration: underline;}
+	.addressA:active{color: black; text-decoration: none;}
 </style>
 </head>
 <body>
 <form id="checkPostForm">
-	<table border="1" cellspacing="0" cellpadding="5" width="475" >
+	<table id="zipcodeTable" border="1" cellspacing="0" cellpadding="5" width="475" >
 		<tr>
 			<td align="center">시도</td>
 			<td align="center">
@@ -59,25 +63,6 @@
 				<label>주소</label>
 			</td>
 		</tr>
-		
-		<c:if test="${list != null }">
-			<c:forEach var="zipcodeDTO" items="${list }">
-			<c:set var="address">
-				${zipcodeDTO.sido} ${zipcodeDTO.sigungu} ${zipcodeDTO.yubmyundong} ${zipcodeDTO.ri} ${zipcodeDTO.roadname } ${zipcodeDTO.buildingname }
-				<%--  ${} ${} 이렇게 여러개 연속일때 중간에 엔터값 들어가면 인식 못하니까, 따로 변수로 잡아버리기 --%>
-			</c:set>
-			<tr>
-				<td align="center">${zipcodeDTO.zipcode }</td>
-				<td colspan="3">
-					<%-- <a href="" id="addressA" onclick="checkPostClose('${zipcodeDTO.zipcode}','${address }')">${address }</a> --%>
-					<%-- 이걸 js에서 처리할수도있음 (근데 반복문쓰기땜에 제이쿼리에선 zipcode랑 address값 가져가서 처리할수없음 - 자바스크립트는 가능) --%>
-					<%-- <input type="hidden" id="zipcode" value="${zipcodeDTO.zipcode}">와 같이 담아서 --%>
-					
-					<a href="" class="addressA">${address }</a>
-				</td> 
-			</tr>
-			</c:forEach>
-		</c:if>
 		
 	</table>
 </form>
