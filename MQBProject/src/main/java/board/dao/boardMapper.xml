@@ -6,9 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 게시판 글쓰기 -->
 	<insert id="write" parameterType="board.bean.BoardDTO">
 		insert into board 
-		(seq,id,name,email,subject,content,ref,logtime) 
+		(seq,id,name,email,subject,content,ref) 
 		values
-		(seq_board.nextval, #{id}, #{name}, #{email}, #{subject}, #{content}, seq_board.currval, sysdate)
+		(seq_board.nextval, #{id}, #{name}, #{email}, #{subject}, #{content}, seq_board.currval)
 	</insert>
 	
 	<!-- 게시판 글목록 불러오기 -->
@@ -18,10 +18,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				select * from board order by ref desc, step asc) 
 			tt) 
 		where rn<![CDATA[>=]]>#{startNum} and rn<![CDATA[<=]]>#{endNum}
+	<!-- <를 태그로 인식하니까 <![CDATA[]]> 안에 써도 되고, &gt;= / &lt;= 혹은 &ge; / &le; 로 써도 됨 -->
+	<!-- between and 사이에 넣어서 써도 됨 -->
+	</select>
+	
+	<!-- 글 상세페이지 보이기 -->
+	<select id="detailView" parameterType="Integer" resultType="board">
+		select * from board where seq=#{seq}
 	</select>
 	
 	<!-- 총 글 수 구하기 -->
 	<select id="getTotalA" resultType="int">
 		select count(*) from board
 	</select>
+	
+	
 </mapper>

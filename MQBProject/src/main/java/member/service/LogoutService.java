@@ -15,15 +15,14 @@ public class LogoutService implements CommandProcess {
 		HttpSession session = request.getSession();
 		
 		// 세션 - 특정 세션 제거
-		session.removeAttribute("memName");
-		session.removeAttribute("memId");
+		// session.removeAttribute("memName");
+		// session.removeAttribute("memId");
 		
 		// 세션 - 모든 세션 삭제
 		session.invalidate();
 		
 		// 응답
-		request.setAttribute("display", "/member/logout.jsp");
-		return "/index.jsp";
+		return "/member/logout.jsp";
 	}
 
 }

@@ -25,43 +25,47 @@
 			color: limegreen;
 		}
 	
-		#boardListForm table{
+		#boardListTable{
 			width: 100%;
-			border-top: 2px solid blue;
+			border-top: 2px solid #483D8B;
 			/* border-collapse: collapse; */
 		}
 		
-		#boardListForm #title th{
-			border-bottom: 2px solid blue;
-			font-size: 15px;
-			height: 30px;
-			color: blue;
+		#boardListTable #title th{
+			border-bottom: 2px solid #483D8B;
+			font-size: 20px;
+			height: 50px;
+			color: #483D8B;
+			background-color: aliceblue;
 		}
 		
-		#boardListForm td{
-			border-bottom: 1px solid blue;
-			text-align: center;
-			font-size: 13px;
+		#boardListTable td{
+			border-bottom: 1px solid #483D8B;
+			height: 30px;
+			font-size: 18px;
 			color: black;
 		}
 		
 		#boardListPage{
 			width: 100%; 
 			text-align: center;
-			position: relative;
-			left: -330px;
+			font-size: 20px;
 		}
 	</style>
 </head>
 <body>
-	<table id="boardListForm" cellspacing="0" cellpadding="5"><!-- frame="hsides" rules="rows"로 가로줄만 나오게! -->
+	<input type="hidden" id="pg" value="${pg }" /> <!-- pg값을 js로 전달하기 위한 요소 -->
+
+	<table id="boardListTable" cellspacing="0" cellpadding="5"><!-- frame="hsides" rules="rows"로 가로줄만 나오게! -->
 		<tr id="title">
 			<th>글번호</td> <!-- td대신 th로 잡으면 자동으로 중앙정렬됨 -->
-			<th style="width: 200px">제목</td>
+			<th style="width: 600px">제목</td>
 			<th >작성자</td>
 			<th>조회수</td>
-			<th style="width: 130px">작성일</td>
+			<th style="width: 180px">작성일</td>
 		</tr>
+	</table>
+<%-- 
 	<c:if test="${list != null}"> 
 		<c:forEach var="boardDTO" items="${list }">
 		<tr>
@@ -74,13 +78,18 @@
 			<td>${boardDTO.logtime }</td>
 		</tr>
 		</c:forEach>
-	</table>
 	<br><br>
+	</c:if> 
+ --%>
+ 
 	<div id="boardListPage">
 		<c:forEach var="i" begin="1" end="${totalP }">
 			[<a href="/MQBProject/board/boardList.do?pg=${i }"> ${i } </a>]
 		</c:forEach>
 	</div>
-	</c:if> 
+ 
+<!-- 선생님코드 - 파일 분할해서 display에 안담고 service파일 & js파일로 분할해서 ajax로 처리 -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/MQBProject/js/board.js"></script>
 </body>
 </html>
