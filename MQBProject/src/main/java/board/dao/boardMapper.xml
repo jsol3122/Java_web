@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 글 상세페이지 보이기 -->
-	<select id="detailView" parameterType="Integer" resultType="board">
+	<select id="detailView" parameterType="int" resultType="board">
 		select * from board where seq=#{seq}
 	</select>
 	

@@ -14,10 +14,10 @@ $(function(){
 					text: items.seq
 				})).append($('<td/>',{
 					align: 'left',
-				}).append($('<a>',{
-					href: '#',
-					text: items.subject,
-					class: 'subjectA'					
+					}).append($('<a>',{
+						href: '#',
+						text: items.subject,
+						class: 'subjectA'					
 				}))).append($('<td/>',{
 					align: 'center',
 					text: items.id

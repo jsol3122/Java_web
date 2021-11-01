@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.control.CommandProcess;
 
@@ -18,7 +19,6 @@ public class GetBoardViewService implements CommandProcess {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 		
 		int seq = Integer.parseInt(request.getParameter("seq"));
-		int pg = Integer.parseInt(request.getParameter("pg"));
 		
 		BoardDAO boardDAO = BoardDAO.getInstance(); 
 		BoardDTO boardDTO = boardDAO.detailView(seq);
@@ -38,7 +38,12 @@ public class GetBoardViewService implements CommandProcess {
         json.put("hit", boardDTO.getHit());
         json.put("logtime", sdf.format(boardDTO.getLogtime()));
 		
+        HttpSession session = request.getSession();
+		json.put("sessionId", session.getAttribute("memId"));
+        
         request.setAttribute("DTO", json);
+        
+        
         
 		return "/board/getBoardView.jsp";
 	}

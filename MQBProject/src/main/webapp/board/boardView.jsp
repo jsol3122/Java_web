@@ -2,36 +2,40 @@
     pageEncoding="UTF-8"%>
     
 <style type="text/css">
-	table{
+	#boardDetail table{
 		width: 100%;
-		border-top: 1px solid black;
+		border-top: 2px solid #483D8B;
 		border-collapse: collapse;
 	}
 	
-	#subject td{
+	#boardDetail #subject td{
 		font-size: 25px;
 		text-align: center;
 		font-weight: bold;
+		background-color: aliceblue;
 	}
 	
-	#info td{
+	#boardDetail #info td{
 		text-align: center;
+		font-size: 15px;
 	}
 	
-	td{
-		border-bottom: 1px solid black;		
+	#boardDetail td{
+		border-bottom: 2px solid #483D8B;		
 		padding: 10px;
 	}
 	
-	div{
+	#boardDetail div{
 		text-align: center;
 	}
-	#content{
+	#boardDetail #content td{
 		word-break: break-all;
+		text-align: left;
+		font-size: 15px;
 	}
 </style>
 
-<form>
+<form id="boardDetail">
 	<table>
 		<input type="hidden" id="pg" value="${pg }" />
 		<input type="hidden" id="seq" value="${seq }" />
@@ -50,29 +54,36 @@
 	</table>
 	<br>
 	<div>
-		<input type="button" value="목록" onclick="location.href='boardList.jsp?pg='">
+		<input type="button" value="목록" onclick="location.href='/MQBProject/board/boardList.do?pg=${pg}'">
+		<input type="hidden" id="update" value="글수정" />
+		<input type="hidden" id="delete" value="글삭제" />
+		<input type="button" value="답글" />
 	</div>
-	
-	<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script type="text/javascript">
-		$(function(){
-			$.ajax({
-				url: '/MQBProject/board/getBoardView.do',
-				type: 'post',
-				data: 'pg='+$('#pg').val()+'&seq='+$('#seq').val(),
-				dataType: 'json',
-				success: function(data){
-					// alert(JSON.stringify(data));
-					$('#subject td').html(data.subject);
-					$('#info span:eq(0)').html(data.seq);
-					$('#info span:eq(1)').html(data.id);
-					$('#info span:eq(2)').html(data.hit);
-					$('#content pre').html(data.content);
-				},
-				error: function(err){
-					console.log(err);
-				}
-			});
-		});
-	</script>
 </form>
+	
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$.ajax({
+			url: '/MQBProject/board/getBoardView.do',
+			type: 'post',
+			data: {'seq': $('#seq').val()},
+			dataType: 'json',
+			success: function(data){
+				// alert(JSON.stringify(data));
+				$('#subject td').html(data.subject);
+				$('#info span:eq(0)').html(data.seq);
+				$('#info span:eq(1)').html(data.id);
+				$('#info span:eq(2)').html(data.hit);
+				$('#content pre').html(data.content);
+				
+				if(data.sessionId == data.id){
+					$('#update, #delete').prop('type', 'button');
+				}
+			},
+			error: function(err){
+				console.log(err);
+			}
+		});
+	});
+</script>

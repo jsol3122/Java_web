@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="guestBookSQL">
+	<!-- 방명록 글작성 -->
+	<insert id="write" parameterType="guestbook">
+		insert into guestbook (
+		seq,name,email,subject,content,logtime) values(
+		seq_guestbook.nextval,#{name},#{email},#{subject},#{content},sysdate)
+	</insert>
+	
+	<!-- 방명록 글목록 불러오기 -->
+	<select id="getBoardList" parameterType="java.util.Map" resultType="guestbook">
+		select * from (
+			select rownum rn, tt.* from (
+				select * from guestbook order by seq desc) 
+			tt) 
+		where rn<![CDATA[>=]]>#{startNum} and rn<![CDATA[<=]]>#{endNum}
+	</select>
+	
+</mapper>

@@ -38,6 +38,7 @@
 	
 	<!-- <iframe id="iframe" name="iframe" style="display: none"></iframe> -->
 </form>
-
+<!-- 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="http://localhost:8080/MQBProject/js/member.js"></script> 
+ -->
