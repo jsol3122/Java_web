@@ -60,7 +60,7 @@
 		<input type="button" value="목록" onclick="location.href='/MQBProject/board/boardList.do?pg=${pg}'">
 		<input type="hidden" id="update" value="글수정" onclick="mode(1)"/>
 		<input type="hidden" id="delete" value="글삭제" onclick="mode(2)"/>
-		<input type="button" value="답글" />
+		<input type="button" value="답글" onclick="location.href='/MQBProject/board/boardReplyForm.do?pg=${pg}&seq=${seq}'"/>
 	</div>
 </form>
 	
@@ -96,7 +96,11 @@
 			document.getElementById('boardViewForm').action = '/MQBProject/board/boardModifyForm.do';
 			document.getElementById('boardViewForm').submit();
 		}else if(num == 2){ // 삭제
-			
+			document.getElementById('boardViewForm').method = 'post'; 
+			document.getElementById('boardViewForm').action = '/MQBProject/board/boardDelete.do';
+			alert('삭제 완료');
+			document.getElementById('boardViewForm').submit();
 		}
 	};
+
 </script>

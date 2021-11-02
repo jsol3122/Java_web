@@ -11,13 +11,13 @@ $(function(){
 			$.each(data.list, function(index, items){
 				$('<tr/>').append($('<td/>',{
 					align: 'center',
-					text: items.seq
+					text: items.seq,
 				})).append($('<td/>',{
 					align: 'left',
 					}).append($('<a>',{
 						href: '#',
 						text: items.subject,
-						class: 'subjectA'					
+						id: 'subejct_'+items.seq					
 				}))).append($('<td/>',{
 					align: 'center',
 					text: items.id
@@ -28,16 +28,31 @@ $(function(){
 					align: 'center',
 					text: items.logtime
 				})).appendTo($('#boardListTable'));
+				
+				// 답글 들여쓰기
+				for(var i=0; i<items.lev; i++){
+					$('#subejct_'+items.seq).before('&emsp;');
+				}
+				
+				// 답글 기호 이미지 넣기
+				if(items.pseq != 0) 
+					$('#subejct_'+items.seq).before($('<img>', {
+						src: '../image/reply.gif',
+						alt: '답글이미지',
+						width: '10',
+						height: '10'
+					}));
+					
+				// 로그인 여부 확인
+				$('#subejct_'+items.seq).click(function(){
+					if(data.sessionId == null){
+						alert('먼저 로그인하세요');
+					}else{
+						$(this).attr('href','/MQBProject/board/boardView.do?seq='+$(this).parent().prev().text()+'&pg='+$('#pg').val());
+					}
+				});
 			});
 			
-			// 로그인 여부 확인
-			$('.subjectA').click(function(){
-				if(data.sessionId == null){
-					alert('먼저 로그인하세요');
-				}else{
-					$(this).attr('href','/MQBProject/board/boardView.do?seq='+$(this).parent().prev().text()+'&pg='+$('#pg').val());
-				}
-			});
 			
 			// 페이징 처리
 			$('#boardPagingDiv').html(data.boardPaging);

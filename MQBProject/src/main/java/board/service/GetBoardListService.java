@@ -78,17 +78,7 @@ public class GetBoardListService implements CommandProcess {
 		request.setAttribute("list", json);
 		
 		return "/board/getBoardList.jsp";
-		
-		/*
-		int totalA = boardDAO.getTotalA(); int totalP = (totalA + 4) / 5;
-		
-		request.setAttribute("pg", pg); 
-		request.setAttribute("endNum", endNum);
-		request.setAttribute("startNum", startNum); 
-		request.setAttribute("list", list); 
-		request.setAttribute("totalA", totalA); 
-		request.setAttribute("totalP", totalP);
-		*/
+
 	}
 
 }

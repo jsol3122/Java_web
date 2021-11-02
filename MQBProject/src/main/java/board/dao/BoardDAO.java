@@ -53,7 +53,7 @@ public class BoardDAO {
 		sqlSession.close();
 		
 		return list;
-	}
+	} // 글 목록 불러오기
 
 	public int getTotalA() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -61,7 +61,7 @@ public class BoardDAO {
 		sqlSession.close();
 		
 		return totalA;
-	}
+	} // 총 글 수 얻어오기
 
 	public BoardDTO detailView(int seq) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -69,7 +69,7 @@ public class BoardDAO {
 		sqlSession.close();
 		
 		return boardDTO;
-	}
+	} // 글 제목 클릭 시 상세페이지 보기
 
 	public void modify(int seq, String subject, String content) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -81,5 +81,48 @@ public class BoardDAO {
 		sqlSession.update("boardSQL.modify", map);
 		sqlSession.commit();
 		sqlSession.close();	
-	}
+	} // 글 수정
+
+	public void reply(Map<String, Object> map) {
+		// 원글 내용을 pDTO 안에 다 넣어주기
+		BoardDTO pDTO = detailView(Integer.parseInt(map.get("pseq")+""));
+		map.put("ref", pDTO.getRef()); // 답글의 ref는 원글의 ref와 동일하므로
+		map.put("lev", pDTO.getLev()+1); // 답글의 lev는 원글의 lev + 1과 동일하므로
+		map.put("step", pDTO.getStep()+1); // 답글의 step는 원글의 step + 1과 동일하므로
+		
+		// step(글순서) update
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.update("boardSQL.stepUpdate", pDTO);
+		
+		// 답글 insert
+		sqlSession.insert("boardSQL.replyInsert", map);
+		
+		// reply(답글수) update
+		sqlSession.update("boardSQL.replyUpdate", map);
+		
+		sqlSession.commit();
+		sqlSession.close();		
+	} // 답글 쓰기
+
+	public void delete(String parameter) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		
+		// 원글 reply -1시키기
+		sqlSession.update("boardSQL.updateOrigin", parameter);
+		
+		// 답글 제목에 [ 원글삭제~ ] 추가
+		String str = "[ 원글이 삭제된 답글 ]";
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("seq", parameter);
+		map.put("str", str);
+		sqlSession.update("boardSQL.replyUpdateStr", map);
+		
+		// 글 삭제
+		sqlSession.delete("boardSQL.delete", parameter);
+		
+		sqlSession.commit();
+		sqlSession.close();		
+	} // 글 삭제
+
+
 }

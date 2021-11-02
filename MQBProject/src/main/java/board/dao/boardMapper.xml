@@ -38,4 +38,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			set subject=#{subject}, content=#{content}, logtime=sysdate
 		where seq=#{seq}
 	</update>
+	
+	<!-- 답글 달기 1 - step update -->
+	<update id="stepUpdate" parameterType="board">
+		update board set step=step+1 where ref=#{ref} and step>#{step}
+	</update>
+	
+	<!-- 답글 달기 2 - 답글 insert -->
+	<insert id="replyInsert" parameterType="java.util.Map">
+		insert into board values (
+			seq_board.nextval, #{id}, #{name}, #{email}
+			, #{subject}, #{content}, #{ref}, #{lev}, #{step}
+			, #{pseq}, 0, 0, sysdate)
+	</insert>
+	
+	<!-- 답글 달기 3 - 답글수(reply) update -->
+	<update id="replyUpdate" parameterType="java.util.Map">
+		update board set reply=reply+1 where seq=#{pseq}
+	</update>
+	
+	<!-- 글 삭제 1 - 원글 reply값 감소 -->
+	<update id="updateOrigin" parameterType="String">
+		update board set reply=reply-1 where seq=(select pseq from board where seq=#{parameter})
+	</update>
+	
+	<!-- 글 삭제 2 - 답글에 [ 원글이 삭제~ ] 글 추가 -->
+	<update id="replyUpdateStr" parameterType="java.util.Map">
+		update board set subject=#{str}||subject where pseq=#{seq}
+	</update>
+	
+	<!-- 글 삭제 3 -->
+	<delete id="delete" parameterType="String">
+		delete board where seq=#{parameter}
+	</delete>
 </mapper>
