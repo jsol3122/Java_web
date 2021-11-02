@@ -30,6 +30,7 @@ $(function(){
 				})).appendTo($('#boardListTable'));
 			});
 			
+			// 로그인 여부 확인
 			$('.subjectA').click(function(){
 				if(data.sessionId == null){
 					alert('먼저 로그인하세요');
@@ -38,6 +39,8 @@ $(function(){
 				}
 			});
 			
+			// 페이징 처리
+			$('#boardPagingDiv').html(data.boardPaging);
 		},
 		error: function(err){
 			console.log(err);

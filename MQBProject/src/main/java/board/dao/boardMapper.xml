@@ -32,5 +32,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from board
 	</select>
 	
-	
+	<!-- 글 수정 -->
+	<update id="modify" parameterType="java.util.Map">
+		update board 
+			set subject=#{subject}, content=#{content}, logtime=sysdate
+		where seq=#{seq}
+	</update>
 </mapper>

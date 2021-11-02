@@ -11,6 +11,7 @@ import javax.websocket.Session;
 import com.control.CommandProcess;
 
 import board.bean.BoardDTO;
+import board.bean.BoardPaging;
 import board.dao.BoardDAO;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -29,6 +30,14 @@ public class GetBoardListService implements CommandProcess {
 		
 		BoardDAO boardDAO = BoardDAO.getInstance(); 
 		List<BoardDTO> list = boardDAO.getBoardList(startNum, endNum);
+		
+		// 페이징처리는 여러번 반복되기 때문에, 전용 자바클래스파일 만들어서 사용
+		BoardPaging boardPaging = new BoardPaging();
+		boardPaging.setCurrentPage(pg);
+		boardPaging.setPageBlock(3);
+		boardPaging.setPageSize(5);
+		boardPaging.setTotalA(boardDAO.getTotalA());
+		boardPaging.makePagingHTML(); // 현재 페이지에 따라 [이전][1][2][3][다음] 과 같은 모양 만드는 함수
 		
 		// 받아온 list를 json형식으로 변환
 		JSONObject json = new JSONObject();
@@ -56,6 +65,14 @@ public class GetBoardListService implements CommandProcess {
 			HttpSession session = request.getSession();
 			json.put("sessionId", session.getAttribute("memId"));
 		} // if
+		
+		// json하나에 list, sessionId, BoardPaging 다 넣기
+		json.put("boardPaging", boardPaging.getPagingHTML().toString());
+		
+		// 아래와 같이 별도의 json객체로 내부에서 한번 더 묶어서 전체 json객체에 넣고 가져가도됨
+		// JSONObject paging = new JSONObject();
+		// paging.put("paging", boardPaging.getPagingHTML().toString());
+		// json.put("boardPaging", paging); 
 		
 		System.out.println(json);
 		request.setAttribute("list", json);

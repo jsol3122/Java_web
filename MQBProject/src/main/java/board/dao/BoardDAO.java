@@ -70,4 +70,16 @@ public class BoardDAO {
 		
 		return boardDTO;
 	}
+
+	public void modify(int seq, String subject, String content) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("seq", seq);
+		map.put("subject", subject);
+		map.put("content", content);
+		
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.update("boardSQL.modify", map);
+		sqlSession.commit();
+		sqlSession.close();	
+	}
 }

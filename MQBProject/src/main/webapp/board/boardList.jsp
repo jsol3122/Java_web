@@ -3,10 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style type="text/css">
-	#boardListPage a:nth-child(${pg}){
-		color: red;
-	}
-	
 	a{
 		text-decoration: none;
 		color: black;
@@ -41,10 +37,22 @@
 		color: black;
 	}
 	
-	#boardListPage{
+	#boardPagingDiv{
 		width: 100%; 
 		text-align: center;
 		font-size: 20px;
+	}
+	
+	#currentPaging{
+		color: red;
+		text-decoration: underline;
+		cursor: pointer;
+	}
+	
+	#paging{
+		color: black;
+		text-decoration: none;
+		cursor: pointer;
 	}
 </style>
 
@@ -59,29 +67,18 @@
 		<th width="180px">작성일</td>
 	</tr>
 </table>
-<%-- 
-	<c:if test="${list != null}"> 
-		<c:forEach var="boardDTO" items="${list }">
-		<tr>
-			<td>${boardDTO.seq }</td>
-			<td style="text-align:left">
-				<a href="boardView.jsp?seq=${boardDTO.seq }&pg=${pg}" id="subjectA">${boardDTO.subject }</a>
-			</td>
-			<td>${boardDTO.id }</td>
-			<td>${boardDTO.hit }</td>
-			<td>${boardDTO.logtime }</td>
-		</tr>
-		</c:forEach>
-	<br><br>
-	</c:if> 
- --%>
 
-<div id="boardListPage">
-	<c:forEach var="i" begin="1" end="${totalP }">
-		[<a href="/MQBProject/board/boardList.do?pg=${i }"> ${i } </a>]
-	</c:forEach>
+<br><br>
+
+<div id="boardPagingDiv">
+	
 </div>
  
 <!-- 선생님코드 - 파일 분할해서 display에 안담고 service파일 & js파일로 분할해서 ajax로 처리 -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/MQBProject/js/board.js"></script>
+<script type="text/javascript">
+	function boardPaging(param_pg){ // BoardPaging클래스에서 작동시킨 함수의 매개변수 i값(=pg값)이 넘어온 것
+		location.href = '/MQBProject/board/boardList.do?pg='+param_pg;
+	}
+</script>
