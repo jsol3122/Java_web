@@ -27,12 +27,12 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type="file" name="img1" id="img1" value="파일 선택">
+				<input type="file" name="image1" id="image1" value="파일 선택">
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type="file" name="img2" id="img2" value="파일 선택">
+				<input type="file" name="image2" id="image2" value="파일 선택">
 			</td>
 		</tr>
 		<tr>

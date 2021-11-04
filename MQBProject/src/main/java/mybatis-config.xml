@@ -10,6 +10,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="member.bean.ZipcodeDTO" alias="zipcode"/>
 		<typeAlias type="board.bean.BoardDTO" alias="board"/>
 		<typeAlias type="guestbook.bean.GuestbookDTO" alias="guestbook"/>
+		<typeAlias type="imageboard.bean.ImageboardDTO" alias="imageboard"/>
 	</typeAliases>
 
 	<environments default="development">
@@ -28,5 +29,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="member/dao/memberMapper.xml"/>
 		<mapper resource="board/dao/boardMapper.xml"/>
 		<mapper resource="guestbook/dao/guestbookMapper.xml"/>
+		<mapper resource="imageboard/dao/imageboardMapper.xml"/>
 	</mappers>
 </configuration>
